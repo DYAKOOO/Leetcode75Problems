@@ -25,16 +25,13 @@
 from unicodedata import name
 import unittest
 from itertools import product
-from TwoSum import twosum, TwoSum
+from TwoSum import TwoSum
+from typing import List
 
 class TestTwoSum(unittest.TestCase):
-    def test_small(self):
-        for (a, b) in product(range(1, 15), repeat=2):
-            self.assertEqual(twosum(a, b), TwoSum(a, b))
-
     def test_large(self):
         for (a, b, m) in [(28851538, 1183019, 1933053046)]:
-            self.assertEqual(twosum(a, b), m)
+            self.assertEqual(TwoSum(a, b), m)
 
 if __name__ == '__main__':
     unittest.main()
