@@ -36,11 +36,42 @@
 
 from typing import List
 
-def threeSum_naive(nums: List[int]) -> List[List[int]]:
-    output = []
+
+#O(n^3) naive solution 
+def threeSum_Naive(self, nums: List[int]) -> List[List[int]]:
+    nums.sort()
+    result = []
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
             for k in range(j+1, len(nums)):
                 if nums[i] + nums[j] + nums[k] == 0:
-                    output.append([nums[i], nums[j], nums[k]])
-    return output
+                    if [nums[i], nums[j], nums[k]] not in result:
+                        result.append([nums[i], nums[j], nums[k]])
+    return result
+
+#O(n^2) solution - This is an o(n^2) solution because we are iterating through the array twice.
+#The first for loop is O(n) and the second while loop is O(n) as well.
+#The while loop is O(n) because we are iterating through the array once and we are also checking if the left and right pointers are equal to each other.
+def threeSum(nums: List[int]) -> List[List[int]]:
+    nums.sort()
+    result = []
+    for i in range(len(nums)):
+        if i > 0 and nums[i] == nums[i-1]:
+            continue
+        left = i+1
+        right = len(nums)-1
+        while left < right:
+            total = nums[i] + nums[left] + nums[right]
+            if total < 0:
+                left += 1
+            elif total > 0:
+                right -= 1
+            else:
+                result.append([nums[i], nums[left], nums[right]])
+                while left < right and nums[left] == nums[left+1]:
+                    left += 1
+                while left < right and nums[right] == nums[right-1]:
+                    right -= 1
+                left += 1
+                right -= 1
+    return result

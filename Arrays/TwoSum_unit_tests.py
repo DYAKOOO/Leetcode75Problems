@@ -25,7 +25,7 @@
 from unicodedata import name
 import unittest
 from itertools import product
-from TwoSum import TwoSum
+from twoSum import TwoSum
 from typing import List
 
 class TestTwoSum(unittest.TestCase):
